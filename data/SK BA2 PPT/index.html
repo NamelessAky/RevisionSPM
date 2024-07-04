@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax Scrolling</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <style>
+        
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+        .box {
+            width: 200px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            border: 2px solid #0000008e;
+            box-shadow: 0 0 20px 5px #000000;
+            background-color: rgba(255, 255, 255, 0.164);
+
+            transition: box-shadow 0.5s ease, background-color 0.5s ease;
+        }
+        .oval {
+            border-radius: 50px;
+        }
+        .arrow {
+            width: 20px;
+            height: 50px;
+            position: relative;
+        }
+        .arrow:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -1px;
+            width: 2px;
+            height: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px 5px #000000;
+        }
+        .arrow:before {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -10px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #ffffff;
+            
+        }
+        .box:hover {
+            box-shadow: 0 0 20px 10px #0f0f0f;
+            background-color: rgba(0, 255, 55, 0.048);
+        }
+
+        .section {
+            margin-top: 60px; 
+            padding: 20px;
+        }
+    </style>
+    <div class="parallax">
+        <div class="layer sky"></div>
+    </div>
+    <div class="content">
+        <h0>Bahagian A PPT Sains Komputer 2024</h0>
+        <p 
+        style=
+        "font-size: smaller; 
+        font-style: italic;"
+        >
+            Kandungan ini mempunyai hak cipta kepada KPM (Buku Teks) dan Pencipta grafik,
+            Pengaturcaraan dan Nota dikecualikan. <br>
+            (C) 2024 Sains Komputer
+        </p>
+
+        <h1>Menu (ONLY HAVE BAB 2 & 3)</h1>
+        <h2>简单的这里没教哦，像ERD, Pernomalan之类</h2>
+        <h3>点击你要看的笔记可快速跳转（手机太下的内容可能跳转不了）</h3>
+
+        <h4>
+            <ul>
+                <li><a href="#query-ma">Query - Microsoft Access</a></li>
+                <li><a href="#reka-bentuk-interaksi"><span style="color: rgb(208, 255, 0); text-shadow: 0 0 15px #1eff00;">✵ STAR-ED Reka Bentuk Interaksi</span></a></li>
+                <li><a href="#proses-reka-bentuk-interaksi"><span style="color: rgb(251, 255, 0); text-shadow: 0 0 15px #830000;">₮ THEORY Proses Reka Bentuk Interaksi</span></a></li>
+            </ul>
+        </h4>
+
+        <h2 class="section" id="query-ma">Query - Microsoft Access</h2>
+        <h4>查询（Query）是 Microsoft Access 中用于从数据库中检索、筛选和操作数据的一种工具。</h4>
+        <h3>Kegunaan Query</h3>
+        <h4>Query (Pernyataan) membuat carian dalam pangkalan data dengan menggunakan kriteria tertentu<br>
+            Query使用特定条件在数据库中进行搜索筛选</h4>
+        <h4>举个例子，筛选出所有出身年份为2007年的学生</h4>
+
+        <h3>Setup （可忽略这些图，可能不重要）</h3>
+        <img src="queryma1.jpg" draggable="false">
+        <img src="queryma2.jpg" draggable="false">
+        <img src="queryma3.jpg" draggable="false">
+        <img src="queryma4.jpg" draggable="false">
+
+        <h3>Membuat query （重点）</h3>
+        <h4>Tambah Kriteria 增加筛选条件</h4>
+        <img src="queryma5.jpg" draggable="false">
+        <h4>筛选表（读不读随你，但建议你看数值条件）</h4>
+        <h3>数值条件：用于筛选数值字段。</h3>
+        <ul>
+            <li>等于（=）：例如，= 100</li>
+            <li>大于（>）：例如，> 100</li>
+            <li>小于（<）：例如，< 100</li>
+            <li>大于等于（>=）：例如，>= 100</li>
+            <li>小于等于（<=）：例如，<= 100</li>
+            <li>不等于（<>）：例如，<> 100</li>
+        </ul>
+
+        <h3>文本条件：用于筛选文本字段。</h3>
+        <ul>
+            <li>精确匹配：例如，"Smith"</li>
+            <li>模糊匹配：使用 LIKE 和通配符，例如，LIKE "S*"</li>
+            <li>不等于：例如，<> "Smith"</li>
+        </ul>
+
+        <h3>日期条件：用于筛选日期字段。</h3>
+        <ul>
+            <li>等于：例如，#2024-01-01#</li>
+            <li>在某个日期之前：例如，< #2024-01-01#</li>
+            <li>在某个日期之后：例如，> #2024-01-01#</li>
+            <li>在一段日期范围内：例如，BETWEEN #2024-01-01# AND #2024-12-31#</li>
+        </ul>
+
+        <h3>逻辑条件：使用布尔逻辑运算符。</h3>
+        <ul>
+            <li>AND：所有条件都必须满足，例如，Age > 30 AND City = "New York"</li>
+            <li>OR：任意一个条件满足即可，例如，Age < 20 OR Age > 60</li>
+            <li>NOT：否定条件，例如，NOT City = "New York"</li>
+        </ul>
+
+        <h3>空值条件：检查字段是否为空或非空。</h3>
+        <ul>
+            <li>IS NULL：例如，City IS NULL</li>
+            <li>IS NOT NULL：例如，City IS NOT NULL</li>
+        </ul>
+
+        <h3>计算和表达式条件：使用计算和表达式。</h3>
+        <ul>
+            <li>计算结果匹配：例如，[Quantity] * [UnitPrice] > 1000</li>
+            <li>字段组合条件：例如，[FirstName] & " " & [LastName] = "John Smith"</li>
+        </ul>
+
+        <h2 class="section" id="reka-bentuk-interaksi">Reka Bentuk Interaksi</h2>
+        <h3>Konsistensi</h3>
+        <h4>一致性（Konsistensi）: 任何界面上的变化都可能引起用户的注意或干扰用户的使用体验。</h4><br>
+        <h4>为了让用户在使用应用程序时感到舒适，所有元素应保持在相同的位置。如果这些元素在没有合理的原因和目的下被移动，会打断用户的注意力。</h4>
+        <img src="prinsip1.jpg" draggable="false">
+        <h4>Semua elemen perlu kekal 
+            pada kedudukan yang sama supaya pengguna akan berasa selesa semasa menggunakan 
+            aplikasi. <br>
+            Jika elemen-elemen tersebut dialihkan tanpa sebab dan tujuan, fokus pengguna 
+            akan terganggu. </h4><br><br>
+
+        <h3>Kebolehan membuat pemerhatian</h3>
+        <h4>新用户在第一次使用应用程序时会仔细观察界面的所有方面。交互指示器或按钮应易于识别。<br>
+            如果交互指示器或按钮难以发现，用户会感到不适。<br>
+            最佳的用户体验是用户能够舒适地、毫不犹豫地使用应用程序。</h4>
+        <img src="prinsip2.jpg" draggable="false">
+        <h4>Penunjuk atau butang 
+            interaksi perlulah mudah dikenal pasti. <br>
+            Jika penunjuk/butang interaksi sukar dikesan, pengguna 
+            akan berasa tidak selesa. </h4><br><br>
+
+        <h3>Boleh dipelajari</h3>
+        <h4>一般来说，交互设计应该易于学习和记忆。<br>
+            用户通常只需使用一次界面，就可以学习并记住如何操作该界面。<br>
+            例如，WhatsApp 应用程序，用户只需使用一次，就能学会如何操作，并能长期记住使用方法。</h4>
+        <img src="prinsip3.jpg" draggable="false">
+        <h4>Logiknya, pengguna hanya 
+            menggunakan antara muka tersebut sekali, tetapi 
+            pada masa yang sama, mereka mempelajarinya dan 
+            mengingati apa-apa yang dipelajari untuk selama-lamanya. </h4><br><br>
+
+        <h3>Kebolehan untuk menjangka</h3>
+        <h4>用户在使用应用程序之前，就能预测应用程序的流程和结果。<br>
+            通过直观的设计和一致的用户体验，用户可以在应用程序中做出合理的预期，从而减少学习时间，提高使用效率。<br>
+            来个比方，网上购物时用户可以在添加商品到购物车后预期接下来的步骤</h4>
+        <img src="prinsip4.jpg" draggable="false">
+        <h4>Reka bentuk interaksi yang baik dan berkesan
+            dapat membuatkan pengguna membuat jangkaan 
+            perkara yang akan berlaku dalam aliran proses 
+            aplikasi tersebut sebelum pengguna menggunakan 
+            aplikasi tersebut. </h4><br><br>
+
+        <h3>Maklum balas</h3>
+        <h4>用户的反馈对于交互设计至关重要。它不仅提供了关于结果的真实图像，还帮助设计师改进已有的交互设计。<br>
+            有效的反馈应具有意义，因为没有适当的反馈可能导致用户感到不安或困惑，使他们重复无用的步骤，进而影响他们的操作体验和应用的使用频率。</h4>
+        <img src="prinsip5.jpg" draggable="false">
+        <h4>Pereka bentuk 
+            menggunakan maklum balas untuk melakukan penambahbaikan pada reka bentuk interaksi 
+            yang telah dihasilkan. <br>
+            Kegagalan untuk memberikan maklum balas yang 
+            dikehendaki, boleh menyebabkan proses pengulangan yang 
+            tidak sepatutnya terhadap sebarang tindakan, kesalahan dan 
+            ralat. </h4><br><br>
+
+        <h2 class="section" id="proses-reka-bentuk-interaksi">Proses Reka Bentuk Interaksi</h2>
+        <h3>1. Mengenal pasti Keperluan Interaksi</h3>
+        <h4>开发者需知道程式的使用者，留意现有产品，及其需求，可用一些方法确定。</h4>
+        <h4>Pereka bentuk perlu mengetahui pengguna yang 
+            disasarkan untuk menggunakan produk yang akan dihasilkan dan 
+            matlamat atau tujuan pengguna menggunakan produk tersebut. <br>
+            Pereka 
+            bentuk juga perlu membuat pemerhatian kepada produk sedia ada dan 
+            mengkaji penyelesaian masalah yang sedia ada dalam produk yang 
+            lain.<br><br>
+            Antara kaedah yang sering digunakan ialah 
+            <ul>
+                <li>borang soal selidik</li>
+                <li>temu ramah</li>
+                <li>kajian tindakan</li>
+                <li>maklum balas</li>
+                <li>tinjauan dan pemerhatian kumpulan sasaran</li>
+                <li>borang tinjauan secara atas talian</li>
+              </ul>
+        </h4>
+
+        <h3>2. Membangunkan Reka Bentuk Alternatif</h3>
+        <h4>在这个阶段，设计师需要思考几种认为适合解决问题的替代方案。<br>
+            这些方案的生成可以来自于观察其他产品的设计、类似的设计方案，以及设计师自身经验中的灵感和创意过程。设计过程可以分为两个子组件：
+            <p>概念设计</p>
+            <ul>
+                <li>创建产品的概念模型</li>
+                <li>描述产品的功能和特征</li>
+                <li>给出产品的整体图像</li>
+            </ul>
+            <p>物理设计</p>
+            <ul>
+                <li>详细说明产品的各个方面，包括颜色、音频、图像等细节</li>
+                <li>设计将使用的菜单和图标</li>
+                <li>考虑界面中的每个元素</li>
+            </ul>
+        </h4>
+        <h4>Seterusnys, pereka bentuk perlu memikirkan 
+            beberapa alternatif yang dirasakan sesuai digunakan untuk mengatasi 
+            masalah yang dihadapi. <br><br>
+            Penjanaan
+            Reka bentuk alternatif boleh datang daripada 
+            <ul>
+                <li>Pemerhatian ke atas reka bentuk produk yang lain</li>
+                <li>Reka bentuk yang sama</li>
+                <li>Proses inspirasi dan kreativiti hasil daripada pengalaman pereka sendiri</li>
+              </ul>
+            Fasa ini boleh dibahagikan kepada 2 sub komponen
+            <p>Reka bentuk konsep:</p>
+                <ul>
+                <li>Penghasilan model konsep untuk produk</li>
+                <li>Menerangkan apa yang boleh dilakukan oleh produk</li>
+                <li>Ciri serta gambaran produk tersebut</li>
+                </ul>
+            <p>Reka bentuk fizikal:</p>
+                <ul>
+                <li>Butir-butir terperinci mengenai produk termasuklah warna, audio, imej</li>
+                <li>Reka bentuk menu dan ikon yang akan digunakan</li>
+                <li>Setiap aspek yang ada dalam "antara muka" akan diambil kira</li>
+                </ul>
+        </h4>
+
+        <h3>3. Membina Prototaip Interaksi</h3>
+        <h4>这是产品开发过程中的初步阶段，涉及创建初步原型以便评估和测试产品。<br>
+            初步原型的目的是在正式推出产品之前从用户那里获取反馈。<br>
+            开发原型并不一定需要使用软件工具，可以采用多种技术来实现互动体验，并不仅限于使用软件。<br>
+            例如，用纸张绘制原型可以是一种更简单的方法。</h4>
+        <h4>Membina gambaran awal bagi produk 
+            yang ingin dibangunkan untuk membolehkan produk tersebut dikaji dan 
+            diuji. <br>
+            Produk awal ini juga digunakan untuk mendapatkan maklum balas 
+            daripada pengguna sebelum produk sebenar disebarkan kepada umum.<br>
+            Untuk membangunkan 
+            prototaip tidak semestinya perlu menggunakan perisian. <br>
+            Pelbagai teknik 
+            boleh digunakan untuk mencapai “interaksi”, dan tidak semestinya 
+            interaksi ini hanya boleh dicapai apabila menggunakan perisian. <br>
+            Sebagai contoh, lebih mudah sekiranya prototaip dilakarkan di atas 
+            kertas. 
+        </h4>
+
+        <h3>4. Membuat Penilaian Reka Bentuk Produk</h3>
+        <h4>这是评估产品或设计的可用性和用户接受度的过程。<br>
+            评估的标准包括用户在使用产品时所犯的错误数量、产品的吸引力、产品是否符合用户的需求以及其他相关标准。<br>
+            此过程的目的是确保产品易于使用、有效，并且能够满足用户的期望和需求。</h4>
+        <h4>Membuat proses yang menentukan kebolehgunaan dan penerimaan
+            produk atau reka bentuk oleh pengguna. Penilaian diukur dalam 
+            pelbagai kriteria seperti: <br><br>
+            <ul>
+                <li>Bilangan kesilapan yang dilakukan oleh pengguna semasa menggunakan produk tersebut</li>
+                <li>Menarik atau tidak produk tersebut</li>
+                <li>Sepadan atau tidak produk itu dengan keperluan</li>
+              </ul>
+        </h4>
+
+        <h1>-- This is the END of Form 4 Notes, Good Luck with your exam~! --</h1>
+
+        <button onclick="window.location.href='../../index.html';">Back to Menu</button>
+    </div>
+    <script src="script.js"></script>

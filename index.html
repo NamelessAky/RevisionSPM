@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('data/assets/Genshin Consert 2023.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-color: #333;
+            color: #ddd;
+            margin: 0;
+            padding: 0;
+        }
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+        }
+        .category {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #44444448;
+            color: white;
+            border: 1px solid #555;
+            padding: 15px;
+            margin: 20px;
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+        .category:hover {
+            background-color: #ffae0034;
+            color: #333;
+            box-shadow: 0 0 15px #d0ff00;
+        }
+        .item {
+            display: flex;
+            align-items: center;
+            background-color: #44444465;
+            border: 1px solid #555;
+            margin: 10px 20px;
+            padding: 10px;
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+        .announcement {
+            background-color: #44444448;
+            color: white;
+            border: 1px solid #555;
+            padding: 15px;
+            margin: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgb(0, 0, 0);
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+        .announcement h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #5eff00;
+            text-shadow: 0 0 10px rgb(251, 255, 1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .announcement h2 {
+            font-size: 26px;
+            font-weight: bold;
+            color: #ff9900;
+            text-shadow: 1px 1px 10px rgb(166, 255, 0);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        .announcement h3 {
+            font-size: 22px;
+            font-weight: bold;
+            color: #002fff9c;
+            text-shadow: 1px 1px 10px rgb(0, 195, 255);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .announcement p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #ffffff;
+            text-shadow: 1px 1px 10px rgb(0, 0, 0);
+            margin-bottom: 16px;
+        }
+        .announcement hr {
+            border: none;
+            height: 1px;
+            background-color: #666666;
+            margin: 20px 0;
+        }
+        
+        .item:nth-child(odd) {
+            background-color: #5a00003a;
+        }
+        .item:nth-child(even) {
+            background-color: #00381333;
+        }
+        .item:hover {
+            background-color: #0044528a;
+            color: white;
+            box-shadow: 0 0 15px #4cacaf;
+        }
+        .item div:first-child {
+            font-weight: bold;
+            min-width: 70px;
+            color: #ffeb3b;
+            text-shadow: 0 0 10px #ffeb3b;
+        }
+        .item-description {
+            flex: 1;
+            margin-left: 20px;
+            color: #ffffff;
+        }
+        .item-link a {
+            text-decoration: none;
+            color: #4CAF50;
+            background-color: #555;
+            padding: 5px 10px;
+            border: 1px solid #4CAF50;
+            border-radius: 3px;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+        .item-link a:hover {
+            background-color: #ffeb3b;
+            color: #333;
+            box-shadow: 0 0 15px #ffeb3b;
+        }
+
+        .special-item {
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 0 15px #f3ff44;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+
+        .special-item:hover {
+            background-color: rgba(63, 0, 146, 0.39);
+            color: white;
+            box-shadow: 0 0 5px #97f1c4;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+
+        .special-item.shadow-off {
+            box-shadow: none;
+        }
+
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .not-allowed {
+            cursor: not-allowed;
+        }
+
+        th, td {
+            border: 1px solid #dddddda1;
+            font-size: smaller;
+            font-style: italic;
+            text-align: center;
+            border-radius: 7px;
+            padding: 8px;
+            transition: background-color 0.5s ease, border-radius 0.5s ease;
+        }
+        td:hover {
+            background-color: #00000063;
+            border-radius: 15px;
+        }
+
+        #password-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        #password-modal-content {
+            background-color: #f3ff870c;
+            backdrop-filter: blur(20px);
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 30px;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        #password-input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #password-submit {
+            background-color: #4caf4f4f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.5s ease;
+        }
+
+        #password-submit:hover {
+            background-color: #83a85291;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-overlay"></div>
+
+    <div class="announcement" id="announcement">
+        <h1>Announcement h1</h1>
+        <h2>Announcement h2</h2>
+        <h3>Announcement h3</h3>
+        <hr>
+        <p>Announcement h4</p>
+    </div>
+    
+    <h1>Menu Selection</h1>
+
+    <div class="category">
+        <strong>Sains Komputer</strong>
+    </div>
+    <div class="item special-item">
+        <div>PPT B-A</div>
+        <div class="item-description">
+            <p>Sains Komputer Pertengahan tahun untuk Form 4 Bab 1. <br>
+               Semua isi dalam fail tersebut dinasihati supaya diulang kaji. <br>
+               别名：微零基础教学--重置版
+            </p>
+        </div>
+        <div class="item-link">
+            <a href="#" data-href="data/SK BA PPT/index.html" class="go-link" id="id003">🔑Go</a>
+        </div>
+    </div>
+    <div class="item special-item">
+        <div>PPT B-A2</div>
+        <div class="item-description">
+            <p>Sains Komputer Pertengahan tahun untuk Form 4 Bab 2 & 3. <br>
+               Semua isi dalam fail tersebut dinasihati supaya diulang kaji. <br>
+               别名：零基础）不是），满基础教学--精选版
+            </p>
+        </div>
+        <div class="item-link">
+            <a href="#" data-href="data/SK BA2 PPT/index.html" class="go-link" id="id004">🔑Go</a>
+        </div>
+    </div>
+    <div class="item special-item">
+        <div>PPT B-B</div>
+        <div class="item-description">
+            <p>Sains Komputer Pertengahan tahun untuk Bahagian B. <br>
+                Semua isi dalam fail tersebut SANGAT DINASIHATI supaya diulang kaji kerana markahnya tinggi</p>
+        </div>
+        <div class="item-link">
+            <a href="#" data-href="data/SK BB PPT/index.html" class="go-link" id="id005">🔑Go</a>
+        </div>
+    </div>
+
+    <div class="category">
+        <strong>Reka cipta</strong>
+    </div>
+    <div class="item">
+        <div>PPT T4</div>
+        <div class="item-description">
+            <p>Reka Cipta Pertengahan tahun untuk Tingkatan 4. <br>
+               Semua isi dalam fail tersebut mungkin keluar.
+            </p>
+            <p>
+                Analysis after axam:
+                <table>
+                    <tr>
+                        <td>Consistent</td>
+                        <td>Association</td>
+                        <td>Irrelevant</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>1</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>53.85%</td>
+                        <td>7.69%</td>
+                        <td>38.46%</td>
+                    </tr>
+                </table>
+            </p>
+        </div>
+        <div class="item-link">
+            <a href="data/RC T4 PPT/index.html" id="id001">Go</a>
+        </div>
+    </div>
+    <div class="item">
+        <div>PPT T5</div>
+        <div class="item-description">
+            <p>Reka Cipta Pertengahan tahun untuk Tingkatan 5. <br>
+                Semua isi dalam fail tersebut mungkin keluar.
+            </p>
+            <p>
+                Analysis after axam:
+                <table>
+                    <tr>
+                        <td>Consistent</td>
+                        <td>Association</td>
+                        <td>Irrelevant</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>3</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>73.33%</td>
+                        <td>20%</td>
+                        <td>6.67%</td>
+                    </tr>
+                </table>
+            </p>
+        </div>
+        <div class="item-link">
+            <a href="data/RC T5 PPT/index.html"  id="id002">Go</a>
+        </div>
+    </div>
+
+    <div class="category">
+        <strong>About this</strong>
+    </div>
+
+    <div class="item special-item">
+        <div>Credit</div>
+        <div class="item-description">
+            <p>Background</p>
+        </div>
+        <div class="item-description">
+            <p>Genshin Impact</p>
+        </div>
+    </div>
+
+    <div class="item special-item">
+        <div>Credit</div>
+        <div class="item-description">
+            <p>Code support</p>
+        </div>
+        <div class="item-description">
+            <p>OpenAI - ChatGPT</p>
+        </div>
+    </div>
+
+    <div class="item special-item">
+        <div>Version</div>
+        <div class="item-description">
+            <p>v1.5</p>
+        </div>
+        <div class="item-description">
+            <p>4/7/24</p>
+        </div>
+        <div class="item-description">
+            <p>
+                1. SK all section done (also new SKBA2PPT)<br>
+                2. Few bugs fix (can't say)
+            </p>
+        </div>
+    </div>
+
+    <!-- Password Modal -->
+    <div id="password-modal">
+        <div id="password-modal-content">
+            <h2>Password Required</h2>
+            <input type="password" id="password-input" placeholder="Enter password">
+            <p id="password-message" style="display: none;">Incorrect password</p>
+            <button id="password-submit">Submit</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
