@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const currentVersion = 'v1.3'; 
+    const currentVersion = 'v1.4'; 
 
     const storedVersion = localStorage.getItem('appVersion');
 
