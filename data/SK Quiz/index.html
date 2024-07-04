@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<body>
+    <h2>Welcome to the Quiz!</h2>
+    
+    <!-- Quiz title -->
+    <input type="hidden" id="quiz_title" name="quiz_title" value="Your Quiz Title">
+
+    <form action="../commondata/result.html" method="post" onsubmit="return storeQuizData()">
+        <fieldset>
+            <legend>Soalan 1: Apakah Java?</legend>
+            <input type="radio" name="q1" value="a"> a) Bahasa pengaturcaraan<br>
+            <input type="radio" name="q1" value="b"> b) Sistem pengendalian<br>
+            <input type="radio" name="q1" value="c"> c) Sistem pengurusan pangkalan data<br>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Soalan 2: Antara berikut, yang manakah bukan jenis data dalam Java?</legend>
+            <input type="radio" name="q2" value="a"> a) decimal<br>
+            <input type="radio" name="q2" value="b"> b) String<br>
+            <input type="radio" name="q2" value="c"> c) boolean<br>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Soalan 3: Apakah hasil keluaran kod Java berikut?</legend>
+            <code>
+                public class Utama {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;public static void main(String[] args) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int x = 5;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(x++);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                }<br>
+            </code><br>
+            <input type="radio" name="q3" value="a"> a) 5<br>
+            <input type="radio" name="q3" value="b"> b) 6<br>
+            <input type="radio" name="q3" value="c"> c) Ralat<br>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Soalan 4: Apakah hasil keluaran daripada kod berikut dalam Java?</legend>
+            <pre><code>
+    int a = 10;
+    int b = 4;
+    int c = a / b;
+    System.out.println(c);
+            </code></pre>
+            <input type="radio" name="q4" value="a"> a) 2<br>
+            <input type="radio" name="q4" value="b"> b) 2.5<br>
+            <input type="radio" name="q4" value="c"> c) 2.0<br>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Soalan 5: Apakah yang akan dicetak selepas kod berikut dijalankan?</legend>
+            <pre><code>
+    String nama = "John";
+    System.out.println("Hai, nama saya " + nama);
+            </code></pre>
+            <input type="radio" name="q5" value="a"> a) Hai, nama saya John<br>
+            <input type="radio" name="q5" value="b"> b) John<br>
+            <input type="radio" name="q5" value="c"> c) Hai, nama saya<br>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Soalan 6: Apakah kemungkinan hasil bagi daripada 15 dibahagi dengan 4 dalam bahasa Java jika menggunakan jenis data int?</legend>
+            <input type="radio" name="q6" value="a"> a) 3<br>
+            <input type="radio" name="q6" value="b"> b) 4<br>
+            <input type="radio" name="q6" value="c"> c) Undefined<br>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Soalan 7: Apakah nilai dari `true && false` dalam Java?</legend>
+            <input type="radio" name="q7" value="a"> a) true<br>
+            <input type="radio" name="q7" value="b"> b) false<br>
+            <input type="radio" name="q7" value="c"> c) Tidak boleh ditentukan<br>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Soalan 8: Apakah hasil keluaran daripada kod berikut dalam Java?</legend>
+            <pre><code>
+    int x = 10;
+    int y = 3;
+    System.out.println(x % y);
+            </code></pre>
+            <input type="radio" name="q8" value="a"> a) 1<br>
+            <input type="radio" name="q8" value="b"> b) 2<br>
+            <input type="radio" name="q8" value="c"> c) 3<br>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Soalan 9: Apakah output daripada kod berikut dalam Java?</legend>
+            <pre><code>
+    int num = 7;
+    String result = (num % 2 == 0) ? "Genap" : "Ganjil";
+    System.out.println(result);
+            </code></pre>
+            <input type="radio" name="q9" value="a"> a) Genap<br>
+            <input type="radio" name="q9" value="b"> b) Ganjil<br>
+            <input type="radio" name="q9" value="c"> c) Compilation error<br>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Soalan 10: Apakah hasil keluaran kod berikut dalam Java?</legend>
+            <pre><code>
+    String s1 = "Hello";
+    String s2 = "Hello";
+    System.out.println(s1 == s2);
+            </code></pre>
+            <input type="radio" name="q10" value="a"> a) true<br>
+            <input type="radio" name="q10" value="b"> b) Hello<br>
+            <input type="radio" name="q10" value="c"> c) HelloHello<br>
+        </fieldset>
+
+        <input type="submit" value="Hantar">
+    </form>
+
+    <script>
+        function storeQuizData() {
+            var quizTitle = document.getElementById('quiz_title').value;
+            var totalQuestions = 10; // Update this if you add more questions
+            var correctAnswers = ["b", "b", "c", "c", "a", "a", "a", "a", "b", "a"];
+            var correctCount = 0;
+
+            // Loop through each question to check correct answers
+            for (var i = 1; i <= totalQuestions; i++) {
+                var selectedAnswer = document.querySelector('input[name="q' + i + '"]:checked');
+                if (selectedAnswer && selectedAnswer.value === correctAnswers[i - 1]) {
+                    correctCount++;
+                }
+            }
+
+            // Store data in sessionStorage
+            sessionStorage.setItem('quiz_title', quizTitle);
+            sessionStorage.setItem('total_questions', totalQuestions);
+            sessionStorage.setItem('correct_count', correctCount);
+
+            return true; // Allow form submission to result.html
+        }
+    </script>
+</body>
+</html>
