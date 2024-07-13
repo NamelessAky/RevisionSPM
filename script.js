@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const currentVersion = 'v1.5'; 
+    const currentVersion = 'v2.0'; 
 
     const storedVersion = localStorage.getItem('appVersion');
 
@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'id003': 'skba', //SK PPT BA
         'id004': 'skba', //SK PPT BA2
         'id005': 'skbb', //SK PPT BB
+        'id006': '', //SJ T4 Notes
     };
     
     let clickedLink;
@@ -107,10 +108,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function changeAnnouncement() {
     var content = {
-        h1: "公告 v1.5",
-        h2: "新版本哦注意，9.00晚上才更新的哦(4/7/2024)，在赶进度的看前两个",
-        h3: "希望有帮到呀",
-        p: "完结，撒花" 
+        h1: "公告 v2.0",
+        h2: "本网站原本是为了电脑打造的，手机建议横屏",
+        h3: "走向Nota风",
+        p: "来自非常（不）温柔（也不）关心的问候：你好呀～！诶，你怎么又在卷啊！" 
     };
 
     var announcementDiv = document.getElementById("announcement");
