@@ -110,7 +110,7 @@ function changeAnnouncement() {
     var content = {
         h1: "公告 v2.1",
         h2: "已停服，请移步至新网站",
-        h3: "https://5sk.netlify.app/",
+        h3: "<a>https://5sk.netlify.app/</a>",
         p: "请移步" 
     };
 
