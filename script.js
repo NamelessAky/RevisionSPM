@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const currentVersion = 'v2.0'; 
+    const currentVersion = 'v2.1'; 
 
     const storedVersion = localStorage.getItem('appVersion');
 
@@ -108,10 +108,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function changeAnnouncement() {
     var content = {
-        h1: "公告 v2.0",
-        h2: "本网站原本是为了电脑打造的，手机建议横屏",
-        h3: "走向Nota风",
-        p: "来自非常（不）温柔（也不）关心的问候：你好呀～！诶，你怎么又在卷啊！" 
+        h1: "公告 v2.1",
+        h2: "已停服，请移步至新网站",
+        h3: "https://5sk.netlify.app/",
+        p: "请移步" 
     };
 
     var announcementDiv = document.getElementById("announcement");
