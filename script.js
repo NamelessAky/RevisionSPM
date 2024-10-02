@@ -121,7 +121,7 @@ function changeAnnouncement() {
     Object.keys(content).forEach(function(tagName) {
         var element = announcementDiv.querySelector(tagName);
         if (element) {
-            element.textContent = content[tagName];
+            element.innerHTML = content[tagName];
             if (content[tagName].trim() === "") {
                 element.style.display = "none";
             } else {
